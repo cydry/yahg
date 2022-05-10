@@ -11,9 +11,9 @@ sub build_definition_filepath {
 
 sub find_definition_line_number {
   my ($filepath) = @_;
-  if ( ! open FH, '<', $filepath ) {
-    die "Failed to open $filepath: $!";
-  }
+  open FH, '<', $filepath
+    or die "Failed to open $filepath: $!";
+
   my $defline = 0;
   while (<FH>) {
     if (/^Definition.*'\b(\w+)'/) {
@@ -26,9 +26,9 @@ sub find_definition_line_number {
 
 sub print_range_lines {
   my ($filepath, $begin, $end) = @_;
-  if ( ! open FH, '<', $filepath ) {
-    die "Failed to open $filepath: $!";
-  }
+  open FH, '<', $filepath
+    or die "Failed to open $filepath: $!";
+
   my @lines = <FH>;
   foreach ($begin..$end) {
     print $lines[$_];
