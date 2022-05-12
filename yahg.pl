@@ -39,6 +39,8 @@ sub print_range_lines {
 sub print_definition {
   my $word = $_;
   my $filepath = build_definition_filepath($word);
+  return unless -e $filepath;
+
   my $def_lnum = find_definition_line_number($filepath);
 
   print_range_lines($filepath, $def_lnum + 1, $def_lnum + 5);
