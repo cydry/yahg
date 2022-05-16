@@ -51,6 +51,7 @@ if (@ARGV > 0) {
 } else {
   while (<STDIN>) {
     chomp;
+    last if /\A\s*\z/;
     print_definition;
   }
 }
