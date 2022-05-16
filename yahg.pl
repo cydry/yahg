@@ -46,12 +46,18 @@ sub print_definition {
   print_range_lines($filepath, $def_lnum + 1, $def_lnum + 5);
 }
 
+sub prompt {
+  print "Search word => ";
+}
+
 if (@ARGV > 0) {
   map { print_definition; } @ARGV;
 } else {
+  prompt;
   while (<STDIN>) {
     chomp;
     last if /\A\s*\z/;
     print_definition;
+    prompt;
   }
 }
